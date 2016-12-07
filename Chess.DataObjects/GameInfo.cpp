@@ -1,12 +1,14 @@
 #include "GameInfo.h"
 
-
-
-GameInfo::GameInfo()
+namespace Chess::DataObjects
 {
-}
+
+	GameInfo::GameInfo()
+	{
+	}
 
 
-GameInfo::~GameInfo()
-{
+	GameInfo::~GameInfo()
+	{
+	}
 }

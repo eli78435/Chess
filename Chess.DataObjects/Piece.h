@@ -3,32 +3,40 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
-enum class ChessPiece {
-	King = 0,
-	Queen = 1,
-	Rook = 2,
-	Bishop = 3,
-	Nnight = 4,
-	Pawn = 5
-};
-
-enum class PlayerColor {Black = 0, White = 1 };
-
-class Piece
+namespace Chess::DataObjects
 {
-private:
-	ChessPiece _chessPies;
-	PlayerColor _color;
+	enum class ChessPieceType {
+		King = 0,
+		Queen = 1,
+		Rook = 2,
+		Bishop = 3,
+		Nnight = 4,
+		Pawn = 5
+	};
 
-	std::string* _toString;
-public:
-	Piece(ChessPiece chessPies, PlayerColor color);
-	~Piece();
+	char GetChessPieceTypeRepresentation(ChessPieceType);
 
-	const std::string* ToString();
-};
+	enum class PlayerColor { Black = 0, White = 1 };
 
-static Piece BlackKing(ChessPiece::King, PlayerColor::Black);
+	char GetPlayerColorRepresentation(PlayerColor);
+
+	class GameBoardPiece
+	{
+	private:
+		ChessPieceType _pieceType;
+		PlayerColor _pieceColor;
+
+		std::string* _toString;
+	public:
+		GameBoardPiece(ChessPieceType chessPies, PlayerColor color);
+		~GameBoardPiece();
+
+		ChessPieceType GetPieceType() const;
+		PlayerColor GetColorType() const;
+
+		const std::string* ToString();
+	};
+
+	static GameBoardPiece BlackKing(ChessPieceType::King, PlayerColor::Black);
+}
 

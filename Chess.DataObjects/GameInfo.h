@@ -1,9 +1,12 @@
 #pragma once
 
-class GameInfo
+namespace Chess::DataObjects
 {
-public:
-	GameInfo();
-	~GameInfo();
-};
+	class GameInfo
+	{
+	public:
+		GameInfo();
+		~GameInfo();
+	};
+}
 

@@ -1,37 +1,69 @@
 #include "Piece.h"
 
-Piece::Piece(ChessPiece chessPies, PlayerColor color) : _chessPies(chessPies), _color(color)
+namespace Chess::DataObjects
 {
-}
-
-Piece::~Piece()
-{
-}
-
-const std::string* Piece::ToString()
-{
-	if (_toString == nullptr)
+	char GetChessPieceTypeRepresentation(ChessPieceType chessColor)
 	{
-		std::string colorAsString = _color == PlayerColor::Black ? "Black"s : "White"s;
-		std::string pieceAsString = _chessPies == ChessPiece::King
-			? "King"
-			: _chessPies == ChessPiece::Queen
-				? "Queen"
-				: _chessPies == ChessPiece::Rook
-					? "Rook"
-					: _chessPies == ChessPiece::Bishop
-						? "Bishop"
-						: _chessPies == ChessPiece::Nnight
-							? "Night"
-							: "Pawn";
-
-		_toString = new std::string(colorAsString + " " + pieceAsString);
+		if (chessColor == ChessPieceType::King)
+			return 'k';
+		else if (chessColor == ChessPieceType::Queen)
+			return 'q';
+		else if (chessColor == ChessPieceType::Rook)
+			return 'r';
+		else if (chessColor == ChessPieceType::Bishop)
+			return 'b';
+		else if (chessColor == ChessPieceType::Nnight)
+			return 'n';
+		else
+			return 'p';
 	}
 
-	return _toString;
-}
+	char GetPlayerColorRepresentation(PlayerColor playerColor)
+	{
+		if (playerColor == PlayerColor::Black)
+			return 'b';
 
-void main()
-{
-	auto toString = BlackKing.ToString();
+		return 'w';
+	}
+
+	GameBoardPiece::GameBoardPiece(ChessPieceType chessPies, PlayerColor color) : _pieceType(chessPies), _pieceColor(color)
+	{
+	}
+
+	GameBoardPiece::~GameBoardPiece()
+	{
+	}
+
+	ChessPieceType GameBoardPiece::GetPieceType() const
+	{
+		return _pieceType;
+	}
+
+	PlayerColor GameBoardPiece::GetColorType() const
+	{
+		return _pieceColor;
+	}
+
+	const std::string* GameBoardPiece::ToString()
+	{
+		if (_toString == nullptr)
+		{
+			std::string colorAsString = _pieceColor == PlayerColor::Black ? "Black" : "White";
+			std::string pieceAsString = _pieceType == ChessPieceType::King
+				? "King"
+				: _pieceType == ChessPieceType::Queen
+				? "Queen"
+				: _pieceType == ChessPieceType::Rook
+				? "Rook"
+				: _pieceType == ChessPieceType::Bishop
+				? "Bishop"
+				: _pieceType == ChessPieceType::Nnight
+				? "Night"
+				: "Pawn";
+
+			_toString = new std::string(colorAsString + " " + pieceAsString);
+		}
+
+		return _toString;
+	}
 }
