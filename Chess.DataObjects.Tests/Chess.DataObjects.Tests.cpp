@@ -6,6 +6,7 @@
 #endif // CATCH_CONFIG_MAIN 
 
 #include "catch.hpp"
+#include "..\Chess.DataObjects\GameBuilderBase.h"
 #include "..\\Chess.DataObjects\GameBoard.h"
 #include "..\\Chess.DataObjects\Piece.h"
 
@@ -59,3 +60,28 @@ TEST_CASE("GameBoardPiece Get Position and Piece, print it with ToString")
 	REQUIRE(toString == "a1-kb");
 }
 
+TEST_CASE("GameBoard InitializeBoard")
+{
+	GameBoard gameBoard;
+	gameBoard.InitializeBoard();
+
+	SECTION("White Rock Position")
+	{
+		/*ActiveGamePosition gameBoardPosition = gameBoard[ {'a',1}]
+		REQUIRE(gameBoardPosition. == -1);*/
+	}
+}
+
+TEST_CASE("TwoHumanGameBuilder build game, white is first player")
+{
+	TwoHumanGameBuilder builder;
+	const GameBuilderBase* builderRef = builder.InitializeBoard();
+
+	builder.BuildPlayers();
+	shared_ptr<ActiveGame> game = builder.Build();
+
+	weak_ptr<ChessPlayer> activePlayer = game->GetActivePlayer();
+	auto activePlayerColor = activePlayer._Get()->GetColor();
+
+	REQUIRE(activePlayerColor == PlayerColor::White);
+}

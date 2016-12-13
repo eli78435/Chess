@@ -112,13 +112,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ChessPlayer.h" />
+    <ClInclude Include="ChessRullEngine.h" />
     <ClInclude Include="GameBoard.h" />
-    <ClInclude Include="GameInfo.h" />
+    <ClInclude Include="GameBuilderBase.h" />
+    <ClInclude Include="ActiveGame.h" />
     <ClInclude Include="Piece.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ChessPlayer.cpp" />
+    <ClCompile Include="ChessRullEngine.cpp" />
     <ClCompile Include="GameBoard.cpp" />
-    <ClCompile Include="GameInfo.cpp" />
+    <ClCompile Include="GameBuilderBase.cpp" />
+    <ClCompile Include="ActiveGame.cpp" />
     <ClCompile Include="Piece.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

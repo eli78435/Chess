@@ -26,6 +26,10 @@ namespace Chess::DataObjects
 		return 'w';
 	}
 
+	GameBoardPiece::GameBoardPiece()
+	{
+	}
+
 	GameBoardPiece::GameBoardPiece(ChessPieceType chessPies, PlayerColor color) : _pieceType(chessPies), _pieceColor(color)
 	{
 	}

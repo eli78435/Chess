@@ -14,6 +14,11 @@ namespace Chess::DataObjects
 		return str;
 	}
 
+	bool operator==(const GamePosition& lhs, const GamePosition& rhs)
+	{
+		return lhs.CharCoordinate == rhs.CharCoordinate && lhs.IntCoordinate == rhs.IntCoordinate;
+	}
+
 	///////////////////////////////////////////
 	//Game Board
 	///////////////////////////////////////////
@@ -22,10 +27,24 @@ namespace Chess::DataObjects
 	{
 	}
 
+	void GameBoard::InitializeBoard()
+	{
+		/*pair<GamePosition, ActiveGamePosition> pair(GamePosition{ 'a',1 }, 
+													ActiveGamePosition(GamePosition{ 'a',1 }, WhiteRook));
+		_picesOnBoard.insert(pair);*/
+
+		_picesOnBoard[GamePosition{ 'a',1 }] = ActiveGamePosition(GamePosition{ 'a',1 }, WhiteRook);
+	}
+
 
 	GameBoard::~GameBoard()
 	{
 	}
+
+	//ActiveGamePosition GameBoard::GetPosition(GamePosition position) const
+	//{
+	//	//return _picesOnBoard
+	//}
 
 	void GameBoard::Print()
 	{
@@ -34,6 +53,10 @@ namespace Chess::DataObjects
 	///////////////////////////////////////////
 	//ActiveGamePosition
 	///////////////////////////////////////////
+
+	ActiveGamePosition::ActiveGamePosition()
+	{
+	}
 
 	ActiveGamePosition::ActiveGamePosition(GamePosition position, GameBoardPiece piece)
 		: _position(position), _piece(piece)

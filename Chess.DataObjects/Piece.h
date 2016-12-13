@@ -28,6 +28,7 @@ namespace Chess::DataObjects
 
 		std::string* _toString;
 	public:
+		GameBoardPiece();
 		GameBoardPiece(ChessPieceType chessPies, PlayerColor color);
 		~GameBoardPiece();
 
@@ -38,5 +39,9 @@ namespace Chess::DataObjects
 	};
 
 	static GameBoardPiece BlackKing(ChessPieceType::King, PlayerColor::Black);
+	static GameBoardPiece WhiteKing(ChessPieceType::King, PlayerColor::White);
+
+	static GameBoardPiece BlackRook(ChessPieceType::Rook, PlayerColor::Black);
+	static GameBoardPiece WhiteRook(ChessPieceType::Rook, PlayerColor::White);
 }
 
