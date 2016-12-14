@@ -20,6 +20,7 @@ namespace Chess::DataObjects
 		~ActiveGame();
 
 		weak_ptr<ChessPlayer> GetActivePlayer() const;
+		bool TryMakeMove(GamePosition from, GamePosition end);
 	};
 }
 

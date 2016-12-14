@@ -4,10 +4,19 @@
 #include <memory>
 #include "Piece.h"
 
+#define CHAR_TO_DIGIT(c) (c-'0')
+
 using namespace std;
 
 namespace Chess::DataObjects
 {
+	class GamePositionValidity
+	{
+	public:
+		static bool IsFirstPositionValid(char position);
+		static bool IsFSecondPositionValid(int position);
+	};
+
 	struct GamePosition
 	{
 		char CharCoordinate;
@@ -17,6 +26,8 @@ namespace Chess::DataObjects
 	};
 
 	bool operator==(const GamePosition& lhs, const GamePosition& rhs);
+	bool operator!=(const GamePosition& lhs, const GamePosition& rhs);
+	static bool TryParse(const string & text, GamePosition & gamePosition);
 }
 
 namespace std
