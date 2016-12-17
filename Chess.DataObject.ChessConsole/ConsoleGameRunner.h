@@ -2,25 +2,23 @@
 
 #include <memory>
 #include "../Chess.DataObjects/ActiveGame.h"
+#include "../Chess.DataObjects/GameBoard.h"
 
-using namespace std;
-using namespace Chess::DataObjects;
-
-void StringToLower(string& originalString);
+void StringToLower(std::string& originalString);
 
 class ConsoleGameRunner
 {
 	bool _runGameLoop = true;
-	shared_ptr<ActiveGame> _initializedGame;
+	std::shared_ptr<Chess::DataObjects::ActiveGame> _initializedGame;
 
 	void PrintHeader() const;
 	void MakeMove();
-	bool TryParse(string & userMove, GamePosition & start, GamePosition & end);
+	bool TryParse(std::string & userMove, Chess::DataObjects::GamePosition & start, Chess::DataObjects::GamePosition & end);
 	void PrintBoard() const;
 	void PrintSuffix() const;
 
 public:
-	ConsoleGameRunner(shared_ptr<ActiveGame> initializedGame);
+	ConsoleGameRunner(std::shared_ptr<Chess::DataObjects::ActiveGame> initializedGame);
 
 	void Run();
 };

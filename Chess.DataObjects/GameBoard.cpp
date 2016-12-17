@@ -10,7 +10,7 @@ namespace Chess::DataObjects
 
 	inline bool GamePositionValidity::IsFirstPositionValid(char position)
 	{
-		if ('a' <= position <= 'h')
+		if ('a' <= position && position <= 'h')
 			return true;
 
 		return false;
@@ -18,7 +18,7 @@ namespace Chess::DataObjects
 
 	inline bool GamePositionValidity::IsFSecondPositionValid(int position)
 	{
-		if (1 <= position <= 8)
+		if (1 <= position && position <= 8)
 			return true;
 
 		return false;
@@ -45,7 +45,7 @@ namespace Chess::DataObjects
 		return lhs.CharCoordinate != rhs.CharCoordinate || lhs.IntCoordinate != rhs.IntCoordinate;
 	}
 
-	static bool TryParse(const string& text, GamePosition & gamePosition)
+	bool TryParse(const string& text, GamePosition & gamePosition)
 	{
 		if (text.length() != 2)
 			return false;
@@ -103,9 +103,20 @@ namespace Chess::DataObjects
 	{
 	}
 
+	ActiveGamePosition::~ActiveGamePosition()
+	{
+	}
+
 	ActiveGamePosition::ActiveGamePosition(GamePosition position, GameBoardPiece piece)
 		: _position(position), _piece(piece)
 	{
+	}
+
+	const ActiveGamePosition& GameBoard::GetPosition(const GamePosition & position) const
+	{
+		const ActiveGamePosition& activePosition = this->_picesOnBoard.at(position);
+		return activePosition;
+
 	}
 
 	unique_ptr<string> ActiveGamePosition::ToString() const

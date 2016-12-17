@@ -6,8 +6,6 @@
 
 #define CHAR_TO_DIGIT(c) (c-'0')
 
-using namespace std;
-
 namespace Chess::DataObjects
 {
 	class GamePositionValidity
@@ -22,12 +20,12 @@ namespace Chess::DataObjects
 		char CharCoordinate;
 		int IntCoordinate;
 
-		unique_ptr<std::string> ToString() const;
+		std::unique_ptr<std::string> ToString() const;
 	};
 
 	bool operator==(const GamePosition& lhs, const GamePosition& rhs);
 	bool operator!=(const GamePosition& lhs, const GamePosition& rhs);
-	static bool TryParse(const string & text, GamePosition & gamePosition);
+	bool TryParse(const std::string & text, GamePosition & gamePosition);
 }
 
 namespace std
@@ -57,20 +55,21 @@ namespace Chess::DataObjects
 	public:
 		ActiveGamePosition();
 		ActiveGamePosition(GamePosition position, GameBoardPiece piece);
-		unique_ptr<string> ToString() const;
+		~ActiveGamePosition();
+		std::unique_ptr<std::string> ToString() const;
 	};
 
 	class GameBoard
 	{
 	private:
-		unordered_map<GamePosition, ActiveGamePosition> _picesOnBoard;
+		std::unordered_map<GamePosition, ActiveGamePosition> _picesOnBoard;
 		
 	public:
 		GameBoard();
 		void InitializeBoard();
 		~GameBoard();
 
-		ActiveGamePosition GetPosition(GamePosition position) const;
+		const ActiveGamePosition& GetPosition(const GamePosition& position) const;
 
 		void Print();
 	};

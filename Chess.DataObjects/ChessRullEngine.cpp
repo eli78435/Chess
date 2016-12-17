@@ -1,5 +1,7 @@
 #include "ChessRullEngine.h"
 
+using namespace std;
+
 namespace Chess::DataObjects
 {
 	ChessRullEngine::ChessRullEngine(weak_ptr<GameBoard> gameBoard) : _gameBoard(gameBoard)
@@ -8,7 +10,7 @@ namespace Chess::DataObjects
 	ChessRullEngine::~ChessRullEngine()
 	{
 	}
-
+	
 	bool ChessRullEngine::TryMakeMove(GamePosition & start, GamePosition & end) 
 	{
 		bool canMakeMove = CanMakeMove(start, end);

@@ -9,18 +9,21 @@ namespace Chess::DataObjects
 {
 	class ActiveGame
 	{
-		shared_ptr<GameBoard> _gameBoard;
-		shared_ptr<ChessPlayer> _whitePlayer;
-		shared_ptr<ChessPlayer> _blackPlayer;
+		bool _isGameEnded = false;
 
-		shared_ptr<ChessPlayer> _activePlayer;
+		std::shared_ptr<GameBoard> _gameBoard;
+		std::shared_ptr<ChessPlayer> _whitePlayer;
+		std::shared_ptr<ChessPlayer> _blackPlayer;
+
+		std::shared_ptr<ChessPlayer> _activePlayer;
 
 	public:
-		ActiveGame(shared_ptr<GameBoard> gameBoard, shared_ptr<ChessPlayer> whitePlayer, shared_ptr<ChessPlayer> blackPlayer);
+		ActiveGame(std::shared_ptr<GameBoard> gameBoard, std::shared_ptr<ChessPlayer> whitePlayer, std::shared_ptr<ChessPlayer> blackPlayer);
 		~ActiveGame();
 
-		weak_ptr<ChessPlayer> GetActivePlayer() const;
-		bool TryMakeMove(GamePosition from, GamePosition end);
+		std::weak_ptr<ChessPlayer> GetActivePlayer() const;
+		bool TryMakeMove(const GamePosition& from, const GamePosition& end);
+		bool IsGameEnded();
 	};
 }
 

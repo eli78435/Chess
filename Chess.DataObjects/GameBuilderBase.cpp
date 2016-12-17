@@ -1,5 +1,7 @@
 #include "GameBuilderBase.h"
 
+using namespace std;
+
 namespace Chess::DataObjects
 {
 
